@@ -40,7 +40,7 @@ const Portfolio: React.FC = () => {
 
   useEffect(() => {
     if (activeTab === "home") {
-      document.title = "Harikrishnan Vinod&apos;s Portfolio";
+      document.title = "Harikrishnan Vinod's Portfolio";
     } else if (activeTab === "about") {
       document.title = "About Me";
     } else if (activeTab === "projects") {
