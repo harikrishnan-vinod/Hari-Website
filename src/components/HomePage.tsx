@@ -80,7 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="space-y-8 sm:space-y-16">
       {/* Indigo Part */}
-      <section className="text-center pt-16 sm:pt-20 lg:pt-32 mt-4 sm:mt-6 pb-12 sm:pb-20 bg-gradient-to-br from-indigo-800 to-indigo-300 rounded-xl sm:rounded-2xl mx-0 sm:mx-0 lg:mx-[-5rem] xl:mx-[-10rem]">
+      <section className="text-center pt-16 sm:pt-20 lg:pt-32 mt-4 sm:mt-6 pb-12 sm:pb-20 bg-gradient-to-br from-indigo-800 to-indigo-300 rounded-xl sm:rounded-2xl mx-0 sm:mx-0 lg:mx-[-5rem] xl:mx-[-10rem] overflow-x-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             👋Hi, I&apos;m{" "}
