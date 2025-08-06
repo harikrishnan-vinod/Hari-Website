@@ -35,7 +35,7 @@ export const projectsInfo: Project [] = [
     id: "2",
     title: "CycleGoWhere!",
     subtitle: "Cycling Navigation Platform",
-    description: "CycleGoWhere! is a navigation tool for cyclists that lets you plan safe, scenic routes using Singapore&apos;s park connector network while mapping and saving your routes and activities and displays nearby cycling related amenites on the map",
+    description: "CycleGoWhere! is a navigation tool for cyclists that lets you plan safe, scenic routes using Singapore's park connector network while mapping and saving your routes and activities and displays nearby cycling related amenites on the map",
     detailedDescription: "A comprehensive cycling companion app designed specifically for Singapore&apos;s cycling community. Designed to provide real-time route planning using the extensive Singapore Park Connector network, while offering route saving and activity tracking.",
     technologies: ["React", "Python", "Flask", "Firestore", "Firebase Authentication", "OneMap API"],
     githubUrl: "https://github.com/harikrishnan-vinod/CycleGoWhere",
