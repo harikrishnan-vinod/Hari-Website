@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import Image from "next/image";
 import { Project } from "./types";
 
 interface ProjectsPageProps {
@@ -69,17 +70,19 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
         <div className="space-y-24">
           {projects.map((project) => (
             <div key={project.id} className="space-y-8">
-              {/* Massive Project Image */}
+              {/* Bigggggg Project Image */}
               <div className="relative overflow-hidden rounded-3xl border border-slate-700/50 group">
                 <div className="aspect-video w-full">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={1200}
+                    height={600}
                     className="w-full h-full object-contain bg-slate-100 group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
 
-                {/* Image Overlay with Category */}
+                {/* Image Overlay with Category on the top left */}
                 <div className="absolute top-6 left-6">
                   <span className="bg-slate-900/80 backdrop-blur-sm text-cyan-400 px-4 py-2 rounded-full text-sm font-medium border border-slate-700">
                     {project.category}
@@ -221,7 +224,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                   {project.features.length > 0 && (
                     <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
                       <button
-                        onClick={() => toggleSection(project.id, "features")}
+                        onClick={() =>
+                          toggleSection(Number(project.id), "features")
+                        }
                         className="flex items-center justify-between w-full text-left"
                       >
                         <div className="flex items-center gap-3">
@@ -230,14 +235,14 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                             Key Features
                           </h3>
                         </div>
-                        {isExpanded(project.id, "features") ? (
+                        {isExpanded(Number(project.id), "features") ? (
                           <ChevronUp className="text-slate-400" size={18} />
                         ) : (
                           <ChevronDown className="text-slate-400" size={18} />
                         )}
                       </button>
 
-                      {isExpanded(project.id, "features") && (
+                      {isExpanded(Number(project.id), "features") && (
                         <div className="mt-4 space-y-3">
                           {project.features.map((feature, index) => (
                             <div key={index} className="flex items-start gap-3">
@@ -259,7 +264,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                   {project.challenges.length > 0 && (
                     <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
                       <button
-                        onClick={() => toggleSection(project.id, "challenges")}
+                        onClick={() =>
+                          toggleSection(Number(project.id), "challenges")
+                        }
                         className="flex items-center justify-between w-full text-left"
                       >
                         <div className="flex items-center gap-3">
@@ -268,14 +275,14 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                             Technical Challenges
                           </h3>
                         </div>
-                        {isExpanded(project.id, "challenges") ? (
+                        {isExpanded(Number(project.id), "challenges") ? (
                           <ChevronUp className="text-slate-400" size={18} />
                         ) : (
                           <ChevronDown className="text-slate-400" size={18} />
                         )}
                       </button>
 
-                      {isExpanded(project.id, "challenges") && (
+                      {isExpanded(Number(project.id), "challenges") && (
                         <div className="mt-4 space-y-3">
                           {project.challenges.map((challenge, index) => (
                             <div key={index} className="flex items-start gap-3">
@@ -297,7 +304,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                   {project.learnings.length > 0 && (
                     <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
                       <button
-                        onClick={() => toggleSection(project.id, "learnings")}
+                        onClick={() =>
+                          toggleSection(Number(project.id), "learnings")
+                        }
                         className="flex items-center justify-between w-full text-left"
                       >
                         <div className="flex items-center gap-3">
@@ -306,14 +315,14 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                             Key Learnings
                           </h3>
                         </div>
-                        {isExpanded(project.id, "learnings") ? (
+                        {isExpanded(Number(project.id), "learnings") ? (
                           <ChevronUp className="text-slate-400" size={18} />
                         ) : (
                           <ChevronDown className="text-slate-400" size={18} />
                         )}
                       </button>
 
-                      {isExpanded(project.id, "learnings") && (
+                      {isExpanded(Number(project.id), "learnings") && (
                         <div className="mt-4 space-y-3">
                           {project.learnings.map((learning, index) => (
                             <div key={index} className="flex items-start gap-3">
@@ -334,7 +343,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
               </div>
 
               {/* Divider */}
-              {project.id !== projects.length && (
+              {Number(project.id) !== projects.length && (
                 <div className="border-t border-slate-700/50 pt-12"></div>
               )}
             </div>

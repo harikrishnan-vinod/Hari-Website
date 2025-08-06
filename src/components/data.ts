@@ -3,7 +3,7 @@ import Connect4Game from "./Connect4";
 
 export const projectsInfo: Project [] = [
   {
-    id: 1,
+    id: "1",
     title: "Connect 4 Game",
     subtitle: "AI-Powered Game",
     description: "Connect 4 bot made with alpha-beta pruning and Minimax algorithm made originally in Python but converted to TypeScript",
@@ -32,11 +32,11 @@ export const projectsInfo: Project [] = [
     category: "AI Algorithms"
   },
   {
-    id: 2,
+    id: "2",
     title: "CycleGoWhere!",
     subtitle: "Cycling Navigation Platform",
-    description: "CycleGoWhere! is a navigation tool for cyclists that lets you plan safe, scenic routes using Singapore's park connector network while mapping and saving your routes and activities and displays nearby cycling related amenites on the map",
-    detailedDescription: "A comprehensive cycling companion app designed specifically for Singapore's cycling community. Designed to provide real-time route planning using the extensive Singapore Park Connector network, while offering route saving and activity tracking.",
+    description: "CycleGoWhere! is a navigation tool for cyclists that lets you plan safe, scenic routes using Singapore&apos;s park connector network while mapping and saving your routes and activities and displays nearby cycling related amenites on the map",
+    detailedDescription: "A comprehensive cycling companion app designed specifically for Singapore&apos;s cycling community. Designed to provide real-time route planning using the extensive Singapore Park Connector network, while offering route saving and activity tracking.",
     technologies: ["React", "Python", "Flask", "Firestore", "Firebase Authentication", "OneMap API"],
     githubUrl: "https://github.com/harikrishnan-vinod/CycleGoWhere",
     image: "/cyclegowherelogo.png",
@@ -60,7 +60,7 @@ export const projectsInfo: Project [] = [
     category: "Web Application"
   },
   {
-    id: 3,
+    id: "3",
     title: "HardCoders",
     subtitle: "AI-Powered Learning Assistant",
     description: "An AI-powered tool that helps students learn programming in classrooms through flexible code checking and collaboration",

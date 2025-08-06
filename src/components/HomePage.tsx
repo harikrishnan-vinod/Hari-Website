@@ -7,6 +7,7 @@ import {
   Play,
   X,
 } from "lucide-react";
+import Image from "next/image";
 
 // Mock Project interface and data since we can't import them
 interface Project {
@@ -78,11 +79,12 @@ const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="space-y-8 sm:space-y-16">
-      {/* Hero Section - Responsive */}
+      {/* Indigo Part */}
       <section className="text-center pt-16 sm:pt-20 lg:pt-32 mt-4 sm:mt-6 pb-12 sm:pb-20 bg-gradient-to-br from-indigo-800 to-indigo-300 rounded-xl sm:rounded-2xl mx-0 sm:mx-0 lg:mx-[-5rem] xl:mx-[-10rem] 2xl:mx-[-20rem]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-            👋Hi, I'm <span className="text-teal-900">Harikrishnan Vinod</span>
+            👋Hi, I&apos;m{" "}
+            <span className="text-teal-900">Harikrishnan Vinod</span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-200 mb-6 sm:mb-8 leading-relaxed">
             A passionate Computer Science student specializing in full-stack
@@ -133,9 +135,11 @@ const HomePage: React.FC<HomePageProps> = ({
               <div key={project.id} className="space-y-4 sm:space-y-6">
                 {/* Project Image */}
                 <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-slate-700/50">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={800}
+                    height={400}
                     className="w-full h-48 sm:h-64 lg:h-80 object-contain bg-slate-100 hover:scale-[1.02] transition-transform duration-300"
                   />
                 </div>

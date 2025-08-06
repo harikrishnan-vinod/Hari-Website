@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { RotateCcw, User, Bot, Trophy } from "lucide-react";
 
 type Player = 1 | -1 | 0;
@@ -27,19 +27,22 @@ const Connect4Game = () => {
   };
 
   // Make a move on the board
-  const makeMove = (
-    board: Board,
-    col: number,
-    player: Player
-  ): { board: Board; row: number; success: boolean } => {
-    const newBoard = board.map((column: Player[]) => [...column]);
-    const row = getTopRow(newBoard, col);
-    if (row >= 0) {
-      newBoard[col][row] = player;
-      return { board: newBoard, row, success: true };
-    }
-    return { board, row: -1, success: false };
-  };
+  const makeMove = useCallback(
+    (
+      board: Board,
+      col: number,
+      player: Player
+    ): { board: Board; row: number; success: boolean } => {
+      const newBoard = board.map((column: Player[]) => [...column]);
+      const row = getTopRow(newBoard, col);
+      if (row >= 0) {
+        newBoard[col][row] = player;
+        return { board: newBoard, row, success: true };
+      }
+      return { board, row: -1, success: false };
+    },
+    []
+  );
 
   // Count consecutive pieces in a direction
   const countConsecutive = (
@@ -69,7 +72,7 @@ const Connect4Game = () => {
   };
 
   // Check for win condition
-  const checkWin = (board: Board, player: Player): number => {
+  const checkWin = useCallback((board: Board, player: Player): number => {
     let maxConsecutive = 0;
 
     // Check horizontal
@@ -111,69 +114,72 @@ const Connect4Game = () => {
     }
 
     return maxConsecutive;
-  };
+  }, []);
 
   // Minimax algorithm with alpha-beta pruning
-  const minimax = (
-    board: Board,
-    player: Player,
-    originalPlayer: Player,
-    depth: number
-  ): [number, number] => {
-    const winCheck = checkWin(board, player);
+  const minimax = useCallback(
+    (
+      board: Board,
+      player: Player,
+      originalPlayer: Player,
+      depth: number
+    ): [number, number] => {
+      const winCheck = checkWin(board, player);
 
-    if (winCheck >= 4) {
-      return player === originalPlayer ? [1, 0] : [-1, 0];
-    }
-
-    if (depth === 0) {
-      return [0, 0];
-    }
-
-    const moves: [number, number][] = [];
-    for (let col = 0; col < 7; col++) {
-      const result = makeMove(board, col, player);
-      if (result.success) {
-        const [utility] = minimax(
-          result.board,
-          -player as Player,
-          originalPlayer,
-          depth - 1
-        );
-        moves.push([col, utility]);
+      if (winCheck >= 4) {
+        return player === originalPlayer ? [1, 0] : [-1, 0];
       }
-    }
 
-    if (moves.length === 0) {
-      return [0, 0];
-    }
-
-    let totalUtility = 0;
-    moves.forEach((move: [number, number]) => (totalUtility += move[1]));
-
-    const bestUtility = moves[0][1];
-    let targetUtility = bestUtility;
-
-    moves.forEach((move: [number, number]) => {
-      if (player === originalPlayer) {
-        if (move[1] > targetUtility) targetUtility = move[1];
-      } else {
-        if (move[1] < targetUtility) targetUtility = move[1];
+      if (depth === 0) {
+        return [0, 0];
       }
-    });
 
-    const bestMoves = moves.filter(
-      (move: [number, number]) => move[1] === targetUtility
-    );
-    const selectedMove =
-      bestMoves[Math.floor(Math.random() * bestMoves.length)][0];
+      const moves: [number, number][] = [];
+      for (let col = 0; col < 7; col++) {
+        const result = makeMove(board, col, player);
+        if (result.success) {
+          const [utility] = minimax(
+            result.board,
+            -player as Player,
+            originalPlayer,
+            depth - 1
+          );
+          moves.push([col, utility]);
+        }
+      }
 
-    if (targetUtility === 1 || targetUtility === -1) {
-      return [targetUtility, selectedMove];
-    }
+      if (moves.length === 0) {
+        return [0, 0];
+      }
 
-    return [totalUtility / 7, selectedMove];
-  };
+      let totalUtility = 0;
+      moves.forEach((move: [number, number]) => (totalUtility += move[1]));
+
+      const bestUtility = moves[0][1];
+      let targetUtility = bestUtility;
+
+      moves.forEach((move: [number, number]) => {
+        if (player === originalPlayer) {
+          if (move[1] > targetUtility) targetUtility = move[1];
+        } else {
+          if (move[1] < targetUtility) targetUtility = move[1];
+        }
+      });
+
+      const bestMoves = moves.filter(
+        (move: [number, number]) => move[1] === targetUtility
+      );
+      const selectedMove =
+        bestMoves[Math.floor(Math.random() * bestMoves.length)][0];
+
+      if (targetUtility === 1 || targetUtility === -1) {
+        return [targetUtility, selectedMove];
+      }
+
+      return [totalUtility / 7, selectedMove];
+    },
+    [checkWin, makeMove]
+  );
 
   // Handle human move
   const handleColumnClick = (col: number): void => {
@@ -235,7 +241,7 @@ const Connect4Game = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [currentPlayer, board, gameStatus]);
+  }, [currentPlayer, board, gameStatus, checkWin, makeMove, minimax]);
 
   // Reset game
   const resetGame = (): void => {
@@ -257,10 +263,10 @@ const Connect4Game = () => {
       case "ai-wins":
         return "AI Wins! 🤖";
       case "draw":
-        return "It's a Draw! 🤝";
+        return "It&apos;s a Draw! 🤝";
       default:
         if (isAiThinking) return "AI is thinking...";
-        return currentPlayer === 1 ? "Your turn" : "AI's turn";
+        return currentPlayer === 1 ? "Your turn" : "AI&apos;s turn";
     }
   };
 
@@ -386,7 +392,8 @@ const Connect4Game = () => {
             This Connect 4 implementation features a{" "}
             <strong>Minimax algorithm with alpha-beta pruning</strong> for AI
             decision-making. The AI explores possible moves up to depth 5 and
-            evaluates each position's utility value to make optimal decisions.
+            evaluates each position&apos;s utility value to make optimal
+            decisions.
           </p>
           <p className="text-slate-400 text-xs">
             Click on any column to drop your red disc. Get 4 in a row to win!

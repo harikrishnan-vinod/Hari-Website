@@ -90,8 +90,8 @@ const AboutPage = () => (
               </h2>
               <div className="text-slate-300 leading-relaxed space-y-4 sm:space-y-6">
                 <p className="text-base sm:text-lg">
-                  I'm a passionate Computer Science student entering my third
-                  year, with a deep interest in full-stack development and
+                  I&apos;m a passionate Computer Science student entering my
+                  third year, with a deep interest in full-stack development and
                   artificial intelligence. My journey in these fields started
                   with the curiosity to learn how the technology around me
                   really works. This curiosity has now blossomed into a desire
@@ -99,13 +99,13 @@ const AboutPage = () => (
                   problems around me.
                 </p>
                 <p className="text-base sm:text-lg">
-                  When I'm not coding, I enjoy exploring new technologies, and
-                  connecting with my friends and professors. I believe in
+                  When I&apos;m not coding, I enjoy exploring new technologies,
+                  and connecting with my friends and professors. I believe in
                   continuous learning and staying up-to-date with industry
                   trends.
                 </p>
                 <p className="text-base sm:text-lg">
-                  I'm actively seeking internship opportunities where I can
+                  I&apos;m actively seeking internship opportunities where I can
                   apply my skills, learn from experienced professionals, and
                   contribute to meaningful projects.
                 </p>
