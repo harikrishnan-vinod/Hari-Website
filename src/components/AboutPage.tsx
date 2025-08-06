@@ -15,7 +15,7 @@ import {
 
 const AboutPage = () => (
   <div className="min-h-screen bg-slate-900 space-y-8 sm:space-y-16">
-    {/* Hero Section - Responsive Layout */}
+    {/* The Left Side Thing */}
     <section className="py-8 sm:py-16 mx-0">
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-20 items-start">

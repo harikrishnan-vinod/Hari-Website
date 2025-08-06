@@ -7,7 +7,6 @@ import HomePage from "@/components/HomePage";
 import AboutPage from "@/components/AboutPage";
 import ProjectsPage from "@/components/ProjectsPage";
 import { House, FolderOpenDot, CircleUser } from "lucide-react";
-import Connect4Game from "./Connect4";
 
 const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"home" | "about" | "projects">(
