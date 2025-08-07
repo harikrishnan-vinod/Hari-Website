@@ -53,39 +53,39 @@ const Portfolio: React.FC = () => {
       {/* Navigation */}
       <nav className="bg-slate-900/95 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center py-3 sm:py-4">
-            <div className="flex bg-slate-800/50 backdrop-blur-sm border border-slate-600 rounded-2xl p-1 shadow-lg">
+          <div className="flex justify-center items-center py-4 sm:py-4">
+            <div className="flex bg-slate-800/50 backdrop-blur-sm border border-slate-600 rounded-xl sm:rounded-2xl p-1 shadow-lg w-full sm:w-auto">
               <button
                 onClick={() => setActiveTab("home")}
-                className={`flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base ${
+                className={`flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-3 sm:py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-initial ${
                   activeTab === "home"
                     ? "bg-slate-700 text-white shadow-md"
                     : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                 }`}
               >
-                <House size={16} />
+                <House size={18} className="sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Home</span>
               </button>
               <button
                 onClick={() => setActiveTab("about")}
-                className={`flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base ${
+                className={`flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-3 sm:py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-initial ${
                   activeTab === "about"
                     ? "bg-slate-700 text-white shadow-md"
                     : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                 }`}
               >
-                <CircleUser size={16} />
+                <CircleUser size={18} className="sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">About</span>
               </button>
               <button
                 onClick={() => setActiveTab("projects")}
-                className={`flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base ${
+                className={`flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-3 sm:py-2 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base flex-1 sm:flex-initial ${
                   activeTab === "projects"
                     ? "bg-slate-700 text-white shadow-md"
                     : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                 }`}
               >
-                <FolderOpenDot size={16} />
+                <FolderOpenDot size={18} className="sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Projects</span>
               </button>
             </div>
