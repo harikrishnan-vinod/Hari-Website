@@ -5,9 +5,9 @@ export interface Project {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
+  projectUrl?: string;
   subtitle: string;
   detailedDescription: string;
-  gameComponent?: React.ComponentType;
   image: string;
   duration: string;
   team: string;

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
 import { RotateCcw, User, Bot, Trophy } from "lucide-react";
 
@@ -281,7 +283,7 @@ const Connect4Game = () => {
   };
 
   return (
-    <div className="bg-slate-800 rounded-2xl p-4 sm:p-8 max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto bg-slate-800 rounded-2xl p-3 sm:p-8">
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-200 mb-4">
@@ -360,7 +362,7 @@ const Connect4Game = () => {
                   .map((_, row) => (
                     <div
                       key={`${col}-${row}`}
-                      className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-slate-600 transition-all duration-300 ${getCellColor(
+                      className={`aspect-square w-full rounded-full border-2 border-slate-600 transition-all duration-300 ${getCellColor(
                         board[col][row]
                       )} ${
                         isLastMove(col, row)

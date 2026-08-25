@@ -1,9 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   Github,
   ExternalLink,
   Play,
-  X,
   Calendar,
   Users,
   Target,
@@ -14,6 +15,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Project } from "./types";
 
 interface ProjectsPageProps {
@@ -21,23 +23,9 @@ interface ProjectsPageProps {
 }
 
 const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
-  const [selectedGame, setSelectedGame] = useState<React.ComponentType | null>(
-    null
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<{
     [key: number]: string[];
   }>({});
-
-  const openGameModal = (GameComponent: React.ComponentType) => {
-    setSelectedGame(() => GameComponent);
-    setIsModalOpen(true);
-  };
-
-  const closeGameModal = () => {
-    setSelectedGame(null);
-    setIsModalOpen(false);
-  };
 
   const toggleSection = (projectId: number, section: string) => {
     setExpandedSections((prev) => ({
@@ -136,16 +124,14 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                             Live Demo
                           </a>
                         )}
-                        {project.gameComponent && (
-                          <button
-                            onClick={() =>
-                              openGameModal(project.gameComponent!)
-                            }
+                        {project.projectUrl && (
+                          <Link
+                            href={`${project.projectUrl}?from=projects`}
                             className="inline-flex items-center gap-2 bg-gradient-to-br from-green-500 to-green-600 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-green-700 cursor-pointer transition-all duration-200 font-medium shadow-lg shadow-green-500/25"
                           >
                             <Play size={20} />
                             Play Game
-                          </button>
+                          </Link>
                         )}
                       </div>
                     </div>
@@ -179,16 +165,14 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
                             Live Demo
                           </a>
                         )}
-                        {project.gameComponent && (
-                          <button
-                            onClick={() =>
-                              openGameModal(project.gameComponent!)
-                            }
+                        {project.projectUrl && (
+                          <Link
+                            href={`${project.projectUrl}?from=projects`}
                             className="inline-flex items-center gap-2 bg-gradient-to-br from-green-500 to-green-600 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-green-700 cursor-pointer transition-all duration-200 font-medium shadow-lg shadow-green-500/25"
                           >
                             <Play size={20} />
                             Play Game
-                          </button>
+                          </Link>
                         )}
                       </div>
                     </div>
@@ -351,23 +335,6 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
         </div>
       </div>
 
-      {/* Game Modal */}
-      {isModalOpen && selectedGame && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto relative border border-slate-700">
-            {/* Close Button */}
-            <button
-              onClick={closeGameModal}
-              className="absolute top-4 right-4 z-10 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white p-2 rounded-full transition-colors"
-            >
-              <X size={20} />
-            </button>
-
-            {/* Game Content */}
-            <div className="p-6">{React.createElement(selectedGame)}</div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { Project } from "./types";
-import Connect4Game from "./Connect4";
 
 export const projectsInfo: Project [] = [
   {
@@ -10,7 +9,7 @@ export const projectsInfo: Project [] = [
     detailedDescription: "An intelligent Connect 4 game featuring a sophisticated AI opponent built using the Minimax algorithm with alpha-beta pruning optimization. Originally developed in Python for an AI school module, then converted to TypeScript for web deployment with React.",
     technologies: ["Python", "MiniMax", "TypeScript", "React"],
     liveUrl: "",
-    gameComponent: Connect4Game, 
+    projectUrl: "/projects/connect-4",
     image: "/Connect4.webp",
     duration: "Apr 2024",
     team: "3 Members",

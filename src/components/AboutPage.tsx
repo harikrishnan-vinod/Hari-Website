@@ -11,18 +11,34 @@ import {
   File,
   Award,
   Briefcase,
+  CheckCircle2,
 } from "lucide-react";
+
+const internshipHighlights = [
+  "Enhanced national healthcare systems, including ACC and CCPS.",
+  "Refactored frontend components and form workflows to better match Figma designs.",
+  "Kept frontend applications, backend APIs, and healthcare data endpoints aligned.",
+  "Diagnosed complex NEHR data submission issues across integration layers.",
+  "Managed data structure and field mapping refactors independently.",
+  "Validated JSON-to-XML transformations for national healthcare integrations.",
+];
+
+const internshipTech = [
+  "React",
+  ".NET/C#",
+  "PostgreSQL",
+  "Azure DevOps",
+  "CI/CD",
+];
 
 const AboutPage = () => (
   <div className="min-h-screen bg-slate-900 space-y-8 sm:space-y-16">
-    {/* The Left Side Thing */}
     <section className="py-8 sm:py-16 mx-0">
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-20 items-start">
-          {/* Profile Section */}
           <div className="flex flex-col items-center text-center lg:text-left lg:sticky lg:top-8">
             <img
-              src="/Hari.jpg"
+              src="/Hari.png"
               alt="Harikrishnan Vinod"
               className="w-64 h-64 sm:w-50 sm:h-50 lg:w-90 lg:h-90 rounded-full mb-6 sm:mb-8 object-cover shadow-2xl"
             />
@@ -38,7 +54,6 @@ const AboutPage = () => (
                 <span className="text-base sm:text-lg">Singapore</span>
               </div>
 
-              {/* Resume Button */}
               <div className="flex justify-center mb-6 sm:mb-8">
                 <a
                   href="/Resume_Harikrishnan Vinod (NTU).pdf"
@@ -53,7 +68,6 @@ const AboutPage = () => (
                 </a>
               </div>
 
-              {/* Social Links */}
               <div className="flex justify-center space-x-4 sm:space-x-6">
                 <a
                   href="https://github.com/harikrishnan-vinod"
@@ -81,17 +95,15 @@ const AboutPage = () => (
             </div>
           </div>
 
-          {/* Content Section */}
           <div className="lg:col-span-2 lg:ml-30 space-y-8 sm:space-y-12">
-            {/* About Me */}
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-slate-200">
                 About Me
               </h2>
               <div className="text-slate-300 leading-relaxed space-y-4 sm:space-y-6">
                 <p className="text-base sm:text-lg">
-                  I&apos;m a passionate Computer Science student entering my
-                  third year, with a deep interest in full-stack development and
+                  I&apos;m a passionate Computer Science student in my final
+                  year, with a deep interest in full-stack development and
                   artificial intelligence. My journey in these fields started
                   with the curiosity to learn how the technology around me
                   really works. This curiosity has now blossomed into a desire
@@ -112,7 +124,6 @@ const AboutPage = () => (
               </div>
             </div>
 
-            {/* Education */}
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-slate-200">
                 Education
@@ -123,7 +134,7 @@ const AboutPage = () => (
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-200 mb-2">
-                    Bachelor of Computer Science
+                    Bachelor of Computer Science (Honours)
                   </h3>
                   <p className="text-lg sm:text-xl text-slate-300 mb-3">
                     Nanyang Technological University
@@ -135,24 +146,20 @@ const AboutPage = () => (
                   <div className="space-y-2">
                     <p className="text-slate-300 text-sm sm:text-base">
                       <span className="font-semibold">Current GPA:</span>{" "}
-                      4.21/5.0
+                      4.31/5.0
                     </p>
                     <p className="text-slate-300 text-sm sm:text-base">
-                      <span className="font-semibold">
-                        Relevant Coursework:
-                      </span>{" "}
-                      Data Structures & Algorithms, Artificial Intelligence,
-                      Software Engineering
+                      <span className="font-semibold">FYP Topic:</span> Markov
+                      chain Monte Carlo methods for advanced models
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Work Experience */}
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-slate-200">
-                Work Experience
+                Internship Experience
               </h2>
               <div className="flex items-start space-x-4 sm:space-x-6">
                 <div className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full shadow-lg flex-shrink-0">
@@ -160,28 +167,57 @@ const AboutPage = () => (
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-200 mb-2">
-                    Retail Assistant
+                    Software Engineering Intern
                   </h3>
                   <p className="text-lg sm:text-xl text-slate-300 mb-3">
-                    Kaboom Times Toy Store
+                    Synapxe
                   </p>
                   <div className="flex items-center text-slate-400 mb-4">
                     <Calendar size={14} className="mr-2" />
                     <span className="text-sm sm:text-base">
-                      Feb 2023 - Apr 2023
+                      Jan 2026 - Jul 2026
                     </span>
                   </div>
-                  <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                    Maintained an appealing and organised store layout, ensured
-                    customers had a positive shopping experience leading to
-                    higher customer satisfaction levels. Improved communication
-                    and problem solving skills.
-                  </p>
+
+                  <div className="space-y-5">
+                    <p className="max-w-3xl text-sm sm:text-base leading-relaxed text-slate-300">
+                      Built and improved healthcare product workflows across
+                      frontend interfaces, backend contracts, and national data
+                      integrations.
+                    </p>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {internshipHighlights.map((highlight) => (
+                        <div
+                          key={highlight}
+                          className="flex items-start gap-3 rounded-xl border border-slate-700/60 bg-slate-800/40 p-3"
+                        >
+                          <CheckCircle2
+                            className="mt-0.5 flex-shrink-0 text-cyan-400"
+                            size={16}
+                          />
+                          <span className="text-sm leading-relaxed text-slate-300">
+                            {highlight}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {internshipTech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Achievements */}
             <div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-slate-200">
                 Achievements & Activities

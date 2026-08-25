@@ -1,82 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Github,
   ExternalLink,
   Linkedin,
   BriefcaseBusiness,
   Play,
-  X,
 } from "lucide-react";
 import Image from "next/image";
-
-// Mock Project interface and data since we can't import them
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  gameComponent?: React.ComponentType;
-}
+import Link from "next/link";
+import { Project } from "./types";
 
 interface HomePageProps {
   projects: Project[];
   skills: string[];
-  setActiveTab: React.Dispatch<
-    React.SetStateAction<"home" | "about" | "projects">
-  >;
 }
 
-const HomePage: React.FC<HomePageProps> = ({
-  projects,
-  skills,
-  setActiveTab,
-}) => {
-  const [selectedGame, setSelectedGame] = useState<React.ComponentType | null>(
-    null
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openGameModal = (GameComponent: React.ComponentType) => {
-    setSelectedGame(() => GameComponent);
-    setIsModalOpen(true);
-    // Prevent body scroll when modal is open
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeGameModal = () => {
-    setSelectedGame(null);
-    setIsModalOpen(false);
-    // Restore body scroll when modal is closed
-    document.body.style.overflow = "unset";
-  };
-
-  // Cleanup effect to restore scroll if component unmounts with modal open
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
-
-  // Close modal on escape key
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isModalOpen) {
-        closeGameModal();
-      }
-    };
-
-    if (isModalOpen) {
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [isModalOpen]);
-
+const HomePage: React.FC<HomePageProps> = ({ projects, skills }) => {
   return (
     <div className="space-y-8 sm:space-y-16">
       {/* Indigo Part */}
@@ -92,8 +31,8 @@ const HomePage: React.FC<HomePageProps> = ({
             solutions that make a difference.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-            <button
-              onClick={() => setActiveTab("projects")}
+            <Link
+              href="/projects"
               className="group flex items-center justify-center bg-white/20 backdrop-blur-sm border border-white/30 hover:border-white/50 rounded-full px-4 sm:px-6 py-2 sm:py-3 transition-all duration-200 hover:shadow-md"
             >
               <div className="flex items-center space-x-2">
@@ -104,7 +43,7 @@ const HomePage: React.FC<HomePageProps> = ({
                   View My Work
                 </span>
               </div>
-            </button>
+            </Link>
             <a
               href="https://www.linkedin.com/in/harikrishnan-vinod-901b1774/"
               target="_blank"
@@ -195,14 +134,14 @@ const HomePage: React.FC<HomePageProps> = ({
                           Live Demo
                         </a>
                       )}
-                      {project.gameComponent && (
-                        <button
-                          onClick={() => openGameModal(project.gameComponent!)}
+                      {project.projectUrl && (
+                        <Link
+                          href={`${project.projectUrl}?from=home`}
                           className="inline-flex items-center gap-2 bg-gradient-to-br from-green-500 to-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full hover:from-green-600 hover:to-green-700 cursor-pointer transition-all duration-200 text-xs sm:text-sm font-medium shadow-lg shadow-green-500/25"
                         >
                           <Play size={14} className="sm:w-4 sm:h-4" />
                           Play Game
-                        </button>
+                        </Link>
                       )}
                     </div>
                   </div>
@@ -212,47 +151,6 @@ const HomePage: React.FC<HomePageProps> = ({
           </div>
         </div>
       </section>
-
-      {/* Game Modal */}
-      {isModalOpen && selectedGame && (
-        <div
-          className="fixed inset-0 w-full h-full bg-black/80 backdrop-blur-sm flex items-center justify-center z-[9999] p-4"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: "100vw",
-            height: "100vh",
-            minHeight: "100vh",
-          }}
-          onClick={(e) => {
-            // Close modal if clicking the backdrop
-            if (e.target === e.currentTarget) {
-              closeGameModal();
-            }
-          }}
-        >
-          <div
-            className="bg-slate-900 rounded-xl sm:rounded-2xl max-w-xs sm:max-w-2xl lg:max-w-4xl w-full max-h-[85vh] sm:max-h-[90vh] overflow-auto relative border border-slate-700 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeGameModal}
-              className="absolute top-2 sm:top-4 right-2 sm:right-4 z-10 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white p-1.5 sm:p-2 rounded-full transition-colors"
-            >
-              <X size={18} className="sm:w-5 sm:h-5" />
-            </button>
-
-            {/* Game Content */}
-            <div className="p-4 sm:p-6">
-              {React.createElement(selectedGame)}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Skills Section */}
       <section className="pt-8 sm:pt-10 pb-12 sm:pb-20 bg-slate-800 rounded-xl sm:rounded-2xl">
