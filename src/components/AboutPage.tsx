@@ -38,7 +38,7 @@ const AboutPage = () => (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-20 items-start">
           <div className="flex flex-col items-center text-center lg:text-left lg:sticky lg:top-8">
             <img
-              src="/Hari.png"
+              src="/Hari.PNG"
               alt="Harikrishnan Vinod"
               className="w-64 h-64 sm:w-50 sm:h-50 lg:w-90 lg:h-90 rounded-full mb-6 sm:mb-8 object-cover shadow-2xl"
             />
